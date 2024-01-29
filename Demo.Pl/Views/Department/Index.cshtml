@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Departments>
+@{
+    ViewData["Title"] = "All Departments";
+}
+@if (TempData["Message"] is not null)
+{
+    <div class="alert alert-primary mt-3">
+        @TempData["Message"]
+    </div>
+}
+<h1 class="text-center">All Departments</h1>
+<a asp-action="Create" class="btn btn-info mt-5 ps-3">
+
+    Create new Department
+</a>
+
+    <form asp-action="Index" class=" row mt-3 align-items-center">
+    <div class=" col-6 m-auto row justify-content-center align-items-center p-0 m-0">
+        <div class="col-10 m-0 p-0">
+            <input type="text" class="form-control" id="searchBar" name="SearchValue" placeholder="Search By Name" />
+           
+            @* <input type="text" class="form-control" name="SearchValue" placeholder="Search By Name" /> *@
+        </div>
+       
+        <div class="col-2 m-0 p-0">
+            <input type="Submit" value="Search" class="btn btn-success" />
+            </div>
+       
+        </div>
+    </form>
+@if (Model.Count() > 0)
+{
+    <div class=" mt-2 w-100 p-0 m-0 ">
+        <div class="row p-0 m-0">
+            <div class="col-md-12 row justify-content-center align-items-center p-0 m-0">
+                <table class="table table-bordered col-lg-12  text-center">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(D=>D.Code)</th>
+                            <th>@Html.DisplayNameFor(D=>D.Name)</th>
+                            <th>@Html.DisplayNameFor(D=>D.DateofCreation)</th>
+                            <th>Details</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var department in Model)
+                        {
+                        <tr>
+                            
+                                <td >@department.Code</td>
+                                <td >@department.Name</td>
+                                <td >@department.DateofCreation</td>
+                                <partial name="_buttonPartialView" model="@department.Id.ToString()">
+                            </tr>
+                     
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+
+else
+{
+    <div class="mt-4 alert alert-warning text-center">
+        <h3>
+            there is no Departments OOPS
+        </h3>
+    </div>
+} 
+
+
+
+

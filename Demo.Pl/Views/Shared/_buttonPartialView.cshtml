@@ -1,0 +1,11 @@
+﻿@model String
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<td><a asp-action="Details" asp-route-id="@Model" type="button" class="btn btn-primary text-white"><i class="far fa-eye"></i></a></td>
+<td> <a asp-action="Edit" asp-route-id="@Model" type="button" class="btn btn-success text-white"><i class="fas fa-edit"></i></a></td>
+<td>
+
+
+    <a asp-action="Delete" asp-route-id="@Model" type="button" class="btn btn-danger text-white"><i class="far fa-trash-alt"></i></a>
+</td>

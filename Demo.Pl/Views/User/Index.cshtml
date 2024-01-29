@@ -1,0 +1,70 @@
+﻿@model IEnumerable<UserViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<h1 class="text-center">All Users</h1>
+
+<div class="row justify-content-center align-items-center mt-4">
+    <form asp-action="Index" class="row col-8 offset-1">
+        <div class="col-8">
+            <input type="text" class="form-control" name="email" placeholder="Search By Name" />
+
+        </div>
+        <div class="col-4">
+            <input type="submit" value="Search" class="btn btn-success" />
+
+        </div>
+    </form>
+</div>
+
+@if (Model.Count() > 0)
+{
+    <div class=" mt-2 w-100 p-0 m-0 ">
+        <div class="row p-0 m-0">
+            <div class="col-md-12 row justify-content-center align-items-center p-0 m-0">
+                <table class="table  table-bordered col-lg-12  text-center">
+                    <thead>
+                        <tr>
+                          @* <th>@Html.DisplayNameFor(D=>D.Id)</th>  *@
+                            <th>@Html.DisplayNameFor(D=>D.FName)</th>
+                           <th>@Html.DisplayNameFor(D=>D.LName)</th>  
+                          @*  <th>@Html.DisplayNameFor(D=>D.Email)</th> 
+                            <th>@Html.DisplayNameFor(D=>D.PhoneNumber)</th>  *@
+                            <th>@Html.DisplayNameFor(D=>D.Roles)</th>
+                            <th>Details</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+
+                              @*   <td>@Html.DisplayFor(M=>user.Id)</td> *@
+                                <td>@Html.DisplayFor(M=>user.FName)</td>
+                               <td>@Html.DisplayFor(M=>user.LName)</td>  
+                                @*  <td>@Html.DisplayFor(M=>user.Email)</td> 
+                               <td>@Html.DisplayFor(M=>user.PhoneNumber)</td>  *@
+                                <td>@string.Join(" ",user.Roles)</td>
+                                <partial name="_buttonPartialView" model="@user.Id.ToString()"> 
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+   
+}
+else
+{
+    <div class="mt-4 alert alert-warning text-center">
+        <h3>
+            there is No User OOPS
+        </h3>
+    </div>
+}
+
